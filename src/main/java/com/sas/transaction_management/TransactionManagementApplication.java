@@ -1,4 +1,4 @@
-package com.transaction.transaction_management;
+package com.sas.transaction_management;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

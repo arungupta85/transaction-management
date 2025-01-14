@@ -1,10 +1,10 @@
-package com.transaction.transaction_management.service;
+package com.sas.transaction_management.service;
 
-import com.transaction.transaction_management.dto.TransactionDTO;
-import com.transaction.transaction_management.entity.Transaction;
-import com.transaction.transaction_management.entity.TransactionStatus;
-import com.transaction.transaction_management.mapper.TransactionMapper;
-import com.transaction.transaction_management.repository.TransactionRepository;
+import com.sas.transaction_management.dto.TransactionDTO;
+import com.sas.transaction_management.entity.Transaction;
+import com.sas.transaction_management.entity.TransactionStatus;
+import com.sas.transaction_management.mapper.TransactionMapper;
+import com.sas.transaction_management.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,8 +1,8 @@
-package com.transaction.transaction_management.mapper;
+package com.sas.transaction_management.mapper;
 
-import com.transaction.transaction_management.dto.TransactionDTO;
-import com.transaction.transaction_management.entity.Transaction;
-import com.transaction.transaction_management.entity.TransactionStatus;
+import com.sas.transaction_management.dto.TransactionDTO;
+import com.sas.transaction_management.entity.Transaction;
+import com.sas.transaction_management.entity.TransactionStatus;
 import org.springframework.stereotype.Component;
 
 @Component

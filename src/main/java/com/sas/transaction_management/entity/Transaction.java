@@ -1,29 +1,20 @@
-package com.transaction.transaction_management.dto;
+package com.sas.transaction_management.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-public class TransactionDTO {
+
+@Entity
+@Table(name = "transactions")
+public class Transaction {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String fromAccount;
     private String toAccount;
     private Double amount;
-    private String status; // Status as a string (e.g., PENDING, SUCCESS, FAILURE)
-
-
-
-//    public TransactionDTO(Long id, String fromAccount, String toAccount, Double amount, String status) {
-//        this.id = id;
-//        this.fromAccount = fromAccount;
-//        this.toAccount = toAccount;
-//        this.amount = amount;
-//        this.status = status;
-//    }
-
-    public TransactionDTO() {
-
-    }
-
 
     public Long getId() {
         return id;
@@ -49,14 +40,6 @@ public class TransactionDTO {
         this.toAccount = toAccount;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Double getAmount() {
         return amount;
     }
@@ -64,4 +47,15 @@ public class TransactionDTO {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
+
+    public TransactionStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TransactionStatus status) {
+        this.status = status;
+    }
+
+    @Enumerated(EnumType.STRING)
+    private TransactionStatus status;
 }

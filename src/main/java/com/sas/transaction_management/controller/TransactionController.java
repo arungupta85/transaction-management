@@ -1,7 +1,7 @@
-package com.transaction.transaction_management.controller;
+package com.sas.transaction_management.controller;
 
-import com.transaction.transaction_management.dto.TransactionDTO;
-import com.transaction.transaction_management.service.TransactionService;
+import com.sas.transaction_management.dto.TransactionDTO;
+import com.sas.transaction_management.service.TransactionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
