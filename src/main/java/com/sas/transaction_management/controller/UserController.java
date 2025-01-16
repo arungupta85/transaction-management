@@ -1,7 +1,8 @@
 package com.sas.transaction_management.controller;
 
 import com.sas.transaction_management.dto.UserDTO;
-import com.sas.transaction_management.exception.UserNotFoundException;
+import com.sas.transaction_management.exception.AppError;
+import com.sas.transaction_management.exception.AppException;
 import com.sas.transaction_management.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,8 +36,8 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    @ExceptionHandler(AppException.class)
+    public ResponseEntity<List<AppError>> handleUserNotFoundException(AppException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getErrors());
     }
 }

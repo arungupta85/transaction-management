@@ -2,6 +2,8 @@ package com.sas.transaction_management.service;
 
 import com.sas.transaction_management.dto.UserDTO;
 import com.sas.transaction_management.entity.UserEntity;
+import com.sas.transaction_management.exception.AppError;
+import com.sas.transaction_management.exception.AppException;
 import com.sas.transaction_management.exception.UserNotFoundException;
 import com.sas.transaction_management.mapper.UserMapper;
 import com.sas.transaction_management.repository.UserRepository;
@@ -10,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.sas.transaction_management.exception.ApplicationExceptions.INVALID_EMAIL;
+import static com.sas.transaction_management.exception.ApplicationExceptions.USER_NOT_FOUND;
 
 @Service
 public class UserService {
@@ -29,7 +34,8 @@ public class UserService {
 
     public UserDTO getUserById(Long userId) {
         UserEntity userEntity = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + userId));
+//                .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + userId));
+                .orElseThrow(() -> new AppException(USER_NOT_FOUND, INVALID_EMAIL));
         return userMapper.toDTO(userEntity);
     }
 
