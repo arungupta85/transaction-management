@@ -8,22 +8,7 @@ public class TransactionDTO {
     private String fromAccount;
     private String toAccount;
     private Double amount;
-    private String status; // Status as a string (e.g., PENDING, SUCCESS, FAILURE)
-
-
-
-//    public TransactionDTO(Long id, String fromAccount, String toAccount, Double amount, String status) {
-//        this.id = id;
-//        this.fromAccount = fromAccount;
-//        this.toAccount = toAccount;
-//        this.amount = amount;
-//        this.status = status;
-//    }
-
-    public TransactionDTO() {
-
-    }
-
+    private String status;// Status as a string (e.g., PENDING, SUCCESS, FAILURE)
 
     public Long getId() {
         return id;
@@ -49,19 +34,19 @@ public class TransactionDTO {
         this.toAccount = toAccount;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Double getAmount() {
         return amount;
     }
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

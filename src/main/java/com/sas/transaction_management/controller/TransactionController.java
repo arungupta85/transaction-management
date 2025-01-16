@@ -1,43 +1,57 @@
 package com.sas.transaction_management.controller;
 
 import com.sas.transaction_management.dto.TransactionDTO;
+import com.sas.transaction_management.dto.TransactionStatusUpdateDTO;
+import com.sas.transaction_management.entity.TransactionStatus;
 import com.sas.transaction_management.service.TransactionService;
+import jakarta.transaction.InvalidTransactionException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/transactions")
 public class TransactionController {
 
-    private final TransactionService service;
+    private final TransactionService transactionService;
 
-    public TransactionController(TransactionService service) {
-        this.service = service;
+    public TransactionController(TransactionService transactionService) {
+        this.transactionService = transactionService;
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<TransactionDTO> getTransactionById(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getTransactionById(id));
+        return ResponseEntity.ok(transactionService.getTransactionById(id));
     }
 
     @PostMapping
-    public ResponseEntity<TransactionDTO> createTransaction(@RequestBody TransactionDTO dto) {
-        return ResponseEntity.ok(service.createTransaction(dto));
+    public ResponseEntity<TransactionDTO> createTransaction(@RequestBody TransactionDTO transactionDTO) {
+        return ResponseEntity.ok(transactionService.createTransaction(transactionDTO));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<TransactionDTO> updateTransactionStatus(
             @PathVariable Long id,
-            @RequestBody Map<String, String> requestBody) {
-
-        String status = requestBody.get("status");
-        return ResponseEntity.ok(service.updateTransactionStatus(id, status));
+            @RequestBody TransactionStatusUpdateDTO statusUpdateDTO
+           ) {
+        return ResponseEntity.ok(transactionService.updateTransactionStatus(id, TransactionStatus.valueOf(statusUpdateDTO.getStatus())));
     }
+
+
     @GetMapping
     public ResponseEntity<List<TransactionDTO>> getAllTransactions() {
-        return ResponseEntity.ok(service.getAllTransactions());
+        return ResponseEntity.ok(transactionService.getAllTransactions());
+    }
+    @ExceptionHandler(InvalidTransactionException.class)
+    public ResponseEntity<String> handleInvalidTransactionException(InvalidTransactionException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    // General exception handling (optional)
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
     }
 }

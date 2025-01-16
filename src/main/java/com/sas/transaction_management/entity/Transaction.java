@@ -1,10 +1,6 @@
 package com.sas.transaction_management.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 
 @Entity
 @Table(name = "transactions")
@@ -58,4 +54,6 @@ public class Transaction {
 
     @Enumerated(EnumType.STRING)
     private TransactionStatus status;
+
+    // Getters and Setters
 }
